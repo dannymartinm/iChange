@@ -31,6 +31,17 @@ public class UserDAO{
         return jdbcOperations.query("Select * from user", new userMapper());
     }
 
+    public User findOne(String userName) {
+        return jdbcOperations.queryForObject("Select * from user where username = ?", new Object[]{userName}, new userMapper());
+    }
+
+
+    public int save(User user) {
+        int userUpdate = jdbcOperations.update("insert into user values(?, ?, ?, ?, ?, ?, ?)", user.getId(), user.getUserName(), user.getZone(), user.getPassword(), user.getMail(), user.getNickname(), user.getRate());
+        articleDAO.saveUserArticles(user);
+
+        return userUpdate;
+    }
 
     private final class userMapper implements RowMapper<User>{
 
