@@ -22,6 +22,6 @@ CREATE TABLE article (
   date_edit TIMESTAMP ,
   owner VARCHAR (55),
   FOREIGN KEY (owner)
-  REFERENCES user(username)
+  REFERENCES user(id)
 );
 
