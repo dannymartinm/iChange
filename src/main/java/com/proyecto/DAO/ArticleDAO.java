@@ -13,11 +13,14 @@ import java.util.List;
 import com.proyecto.domain.Article;
 import com.proyecto.domain.User;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 
 /**
  * Created by DanielaMartin on 04/10/16.
  */
+
+@Repository
 public class ArticleDAO {
     private JdbcOperations jdbcOperations;
 

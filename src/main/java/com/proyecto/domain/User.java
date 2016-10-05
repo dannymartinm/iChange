@@ -18,8 +18,11 @@ public class User {
     private List<Article> articleList;
 
     private LocalDateTime dateEdit;
-    private final LocalDateTime dateCreation;
+    private LocalDateTime dateCreation;
 
+    public User(){
+
+    }
 
 
     public User(int id, String username, String zone, String password, String mail, String nickname, double rate, LocalDateTime dateEdit, LocalDateTime dateCreation) {
@@ -103,6 +106,9 @@ public class User {
         return dateCreation;
     }
 
+    public void setDateCreation(LocalDateTime dateCreation) {
+        this.dateCreation = dateCreation;
+    }
 
     public List<Article> getArticleList() {
         return this.articleList;
