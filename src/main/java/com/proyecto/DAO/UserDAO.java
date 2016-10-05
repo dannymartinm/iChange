@@ -58,8 +58,8 @@ public class UserDAO{
             user.setDateCreation(rs.getTimestamp("date_creation").toLocalDateTime());
             user.setDateEdit(rs.getTimestamp("date_edit").toLocalDateTime());
 
-            List<Article> articles = articleDAO.findAllFromUser(user.getUserName());
-            user.addArticles(articles);
+           // List<Article> articles = articleDAO.findAllFromUser(user.getUserName());
+           // user.addArticles(articles);
 
             return user;
         }

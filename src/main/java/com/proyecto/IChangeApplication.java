@@ -17,7 +17,7 @@ public class IChangeApplication {
 		SpringApplication.run(IChangeApplication.class, args);
 	}
 
-/*	@Autowired
+	@Autowired
 	private ArticleDAO articleDAO;
 
 	@Autowired
@@ -31,10 +31,10 @@ public class IChangeApplication {
 				Iterable<User> users = userDAO.findAll();
 				users.forEach(u -> System.out.println(u.getId() + u.getUserName()));
 
-				Iterable<Article> articles = articleDAO.findAll();
-				articles.forEach(n -> System.out.println( n.getName()));
+			//	Iterable<Article> articles = articleDAO.findAll();
+			//	articles.forEach(n -> System.out.println( n.getName()));
 
 			}
 		};
-	}*/
+	}
 }

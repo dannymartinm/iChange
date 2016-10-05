@@ -129,9 +129,9 @@ public class User {
         return article;
     }
 
-    public void addArticles(List<Article> articles) {
-        this.articleList.addAll(articles);
-    }
+   // public void addArticles(List<Article> articles) {
+   //     this.articleList.addAll(articles);
+   // }
 
     @Override
     public String toString() {
