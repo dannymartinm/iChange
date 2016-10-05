@@ -7,7 +7,9 @@ CREATE TABLE user
   password VARCHAR (15),
   mail VARCHAR (50),
   nickname VARCHAR (50),
-  rate double  
+  rate double,
+  date_creation TIMESTAMP,
+  date_edit TIMESTAMP
 );
 
 DROP TABLE if EXISTS article;
