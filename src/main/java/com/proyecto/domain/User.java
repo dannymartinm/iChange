@@ -20,8 +20,10 @@ public class User {
     private LocalDateTime dateEdit;
     private LocalDateTime dateCreation;
 
-    public User(){
 
+
+    public User() {
+        articleList = new ArrayList<Article>();
     }
 
 
@@ -129,13 +131,13 @@ public class User {
         return article;
     }
 
-   // public void addArticles(List<Article> articles) {
-   //     this.articleList.addAll(articles);
-   // }
+    public void addArticles(List<Article> articles) {
+        this.articleList.addAll(articles);
+    }
 
     @Override
     public String toString() {
-        return "User{" +
+        String result= "User{" +
                 "username='" + username + '\'' +
                 "id='" + id + '\'' +
                 ", zone='" + zone + '\'' +
@@ -146,5 +148,14 @@ public class User {
                 ", dateEdit=" + dateEdit +
                 ", dateCreation=" + dateCreation +
                 '}';
+        if (articleList != null) {
+            for(Article article : articleList) {
+                result += String.format(
+                        "Article[id=%d, name='%s']%n",
+                        article.getId(), article.getName());
+            }
+        }
+
+        return result;
     }
 }

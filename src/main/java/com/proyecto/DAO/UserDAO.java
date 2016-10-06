@@ -43,6 +43,8 @@ public class UserDAO{
         return userUpdate;
     }
 
+
+
     private final class userMapper implements RowMapper<User>{
 
         @Override
@@ -58,8 +60,8 @@ public class UserDAO{
             user.setDateCreation(rs.getTimestamp("date_creation").toLocalDateTime());
             user.setDateEdit(rs.getTimestamp("date_edit").toLocalDateTime());
 
-           // List<Article> articles = articleDAO.findAllFromUser(user.getUserName());
-           // user.addArticles(articles);
+           List<Article> articles = articleDAO.findAllFromUser(user.getId());
+            user.addArticles(articles);
 
             return user;
         }

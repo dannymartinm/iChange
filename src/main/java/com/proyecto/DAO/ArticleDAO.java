@@ -35,8 +35,8 @@ public class ArticleDAO {
         return jdbcOperations.queryForObject("Select * from article where id = ?", new Object[]{id}, new ArticleDAO.articleMapper());
     }
 
-    public List<Article> findAllFromUser(String name) {
-        return jdbcOperations.query("select * from article where owner = ?", new Object[]{name}, new articleMapper());
+    public List<Article> findAllFromUser(int id) {
+        return jdbcOperations.query("select * from article where owner = ?", new Object[]{id}, new articleMapper());
     }
 
     public int save(Article article, User owner) {

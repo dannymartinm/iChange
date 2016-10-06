@@ -29,10 +29,13 @@ public class IChangeApplication {
 			@Override
 			public void run(String... strings) throws Exception {
 				Iterable<User> users = userDAO.findAll();
-				users.forEach(u -> System.out.println(u.getId() + u.getUserName()));
+				users.forEach(u -> System.out.println("id:"+u.getId() + " Nombre: "+u.getUserName()));
 
-			//	Iterable<Article> articles = articleDAO.findAll();
-			//	articles.forEach(n -> System.out.println( n.getName()));
+				User user = userDAO.findOne("Maria");
+				System.out.println("Usuario Encontrado: "+ user.getUserName());
+
+				Iterable<Article> articles = articleDAO.findAll();
+				articles.forEach(n -> System.out.println( "Artículo: "+n.getName()));
 
 			}
 		};
