@@ -37,7 +37,7 @@ public class UserDAO{
 
 
     public int save(User user) {
-        int userUpdate = jdbcOperations.update("insert into user values(?, ?, ?, ?, ?, ?, ?)", user.getId(), user.getUserName(), user.getZone(), user.getPassword(), user.getMail(), user.getNickname(), user.getRate());
+        int userUpdate = jdbcOperations.update("insert into user values(?, ?, ?, ?, ?, ?, ?)", user.getIdUser(), user.getUserName(), user.getZone(), user.getPassword(), user.getMail(), user.getNickname(), user.getRate());
         articleDAO.saveUserArticles(user);
 
         return userUpdate;
@@ -50,7 +50,7 @@ public class UserDAO{
         @Override
         public User mapRow(ResultSet rs, int row) throws SQLException{
             User user = new User();
-            user.setId(rs.getInt("id"));
+            user.setIdUser(rs.getInt("idUser"));
             user.setUserName(rs.getString("username"));
             user.setZone(rs.getString("zone"));
             user.setPassword(rs.getString("password"));
@@ -60,7 +60,7 @@ public class UserDAO{
             user.setDateCreation(rs.getTimestamp("date_creation").toLocalDateTime());
             user.setDateEdit(rs.getTimestamp("date_edit").toLocalDateTime());
 
-           List<Article> articles = articleDAO.findAllFromUser(user.getId());
+           List<Article> articles = articleDAO.findAllFromUser(user.getIdUser());
             user.addArticles(articles);
 
             return user;

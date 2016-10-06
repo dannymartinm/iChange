@@ -31,7 +31,7 @@ public class IChangeApplication {
 
 				//Buscar todos los usuarios.
 				Iterable<User> users = userDAO.findAll();
-				users.forEach(u -> System.out.println("id:"+u.getId() + " Nombre: "+u.getUserName()));
+				users.forEach(u -> System.out.println("id:"+u.getIdUser() + " Nombre: "+u.getUserName()));
 
 				//Buscar un usuario por nickname
 				User user = userDAO.findOne("mery");
@@ -44,7 +44,6 @@ public class IChangeApplication {
 				//Buscar los artículos de un usuario en específico.
 				Iterable<Article> user_art = articleDAO.findAllFromUser(2);
 				user_art.forEach(n-> System.out.println(n.getName()));
-
 
 			}
 		};

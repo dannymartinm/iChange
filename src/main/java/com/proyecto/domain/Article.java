@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
  * Created by DanielaMartin on 04/10/16.
  */
 public class Article {
-    private int id;
+    private int idArticle;
     private String name;
     private String description;
     private int time;
@@ -20,8 +20,8 @@ public class Article {
 
     }
 
-    public Article(int id, String name, String description, int time, String yearMonth, int quantity, LocalDateTime dateEdit, LocalDateTime dateCreation) {
-        this.id = id;
+    public Article(int idArticle, String name, String description, int time, String yearMonth, int quantity, LocalDateTime dateEdit, LocalDateTime dateCreation) {
+        this.idArticle = idArticle;
         this.name = name;
         this.description = description;
         this.time = time;
@@ -31,12 +31,12 @@ public class Article {
         this.setDateEdit(dateEdit);
     }
 
-    public int getId() {
-        return id;
+    public int getIdArticle() {
+        return idArticle;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdArticle(int idArticle) {
+        this.idArticle = idArticle;
     }
 
     public String getName() {
@@ -97,7 +97,7 @@ public class Article {
     @Override
     public String toString() {
         return "Article{" +
-                "id=" + id +
+                "idArticle=" + idArticle +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", time=" + time +

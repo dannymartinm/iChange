@@ -1,7 +1,7 @@
 DROP TABLE if EXISTS user;
 CREATE TABLE user
 (
-  id INT (6) auto_increment PRIMARY KEY,
+  idUser INT (6) auto_increment PRIMARY KEY,
   username VARCHAR (55),
   zone VARCHAR (40),
   password VARCHAR (15),
@@ -14,7 +14,7 @@ CREATE TABLE user
 
 DROP TABLE if EXISTS article;
 CREATE TABLE article (
-  id bigint auto_increment PRIMARY KEY,
+  idArticle bigint auto_increment PRIMARY KEY,
   name VARCHAR (50),
   description VARCHAR (255),
   time int,
@@ -24,6 +24,6 @@ CREATE TABLE article (
   date_edit TIMESTAMP ,
   owner VARCHAR (55),
   FOREIGN KEY (owner)
-  REFERENCES user(id)
+  REFERENCES user(idUser)
 );
 

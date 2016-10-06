@@ -8,13 +8,18 @@ import java.util.List;
  * Created by DanielaMartin on 04/10/16.
  */
 public class User {
-    private int id;
+    private int idUser;
     private String username;
     private String zone;
     private String password;
     private String mail;
     private String nickname;
-    private double rate;
+   private double rate;
+
+
+
+    private boolean role;
+
     private List<Article> articleList;
 
     private LocalDateTime dateEdit;
@@ -27,8 +32,8 @@ public class User {
     }
 
 
-    public User(int id, String username, String zone, String password, String mail, String nickname, double rate, LocalDateTime dateEdit, LocalDateTime dateCreation) {
-        this.id= id;
+    public User(int idUser, String username, String zone, String password, String mail, String nickname, double rate, LocalDateTime dateEdit, LocalDateTime dateCreation) {
+        this.idUser= idUser;
         this.username = username;
         this.zone = zone;
         this.password = password;
@@ -38,14 +43,15 @@ public class User {
         this.dateCreation = dateCreation;
         this.setDateEdit(dateEdit);
         this.articleList = new ArrayList<Article>();
+        //this.role= role;
     }
 
-    public int getId() {
-        return id;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getUserName() {
@@ -135,11 +141,12 @@ public class User {
         this.articleList.addAll(articles);
     }
 
+
     @Override
     public String toString() {
         String result= "User{" +
                 "username='" + username + '\'' +
-                "id='" + id + '\'' +
+                "idUser='" + idUser + '\'' +
                 ", zone='" + zone + '\'' +
                 ", password='" + password + '\'' +
                 ", mail='" + mail + '\'' +
@@ -151,8 +158,8 @@ public class User {
         if (articleList != null) {
             for(Article article : articleList) {
                 result += String.format(
-                        "Article[id=%d, name='%s']%n",
-                        article.getId(), article.getName());
+                        "Article[idArticle=%d, name='%s']%n",
+                        article.getIdArticle(), article.getName());
             }
         }
 
