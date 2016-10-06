@@ -33,7 +33,7 @@ public class IChangeApplication {
 				Iterable<User> users = userDAO.findAll();
 				users.forEach(u -> System.out.println("id:"+u.getId() + " Nombre: "+u.getUserName()));
 
-				//Buscar un usuario por nombre
+				//Buscar un usuario por nickname
 				User user = userDAO.findOne("mery");
 				System.out.println("Usuario Encontrado: "+ user.getUserName());
 
