@@ -31,8 +31,8 @@ public class UserDAO{
         return jdbcOperations.query("Select * from user", new userMapper());
     }
 
-    public User findOne(String userName) {
-        return jdbcOperations.queryForObject("Select * from user where username = ?", new Object[]{userName}, new userMapper());
+    public User findOne(String nickname) {
+        return jdbcOperations.queryForObject("Select * from user where nickname = ?", new Object[]{nickname}, new userMapper());
     }
 
 

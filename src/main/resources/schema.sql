@@ -6,7 +6,7 @@ CREATE TABLE user
   zone VARCHAR (40),
   password VARCHAR (15),
   mail VARCHAR (50),
-  nickname VARCHAR (50),
+  nickname VARCHAR (50) UNIQUE,
   rate double,
   date_creation TIMESTAMP,
   date_edit TIMESTAMP

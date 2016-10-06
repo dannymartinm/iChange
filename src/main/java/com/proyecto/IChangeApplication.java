@@ -28,14 +28,23 @@ public class IChangeApplication {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
+
+				//Buscar todos los usuarios.
 				Iterable<User> users = userDAO.findAll();
 				users.forEach(u -> System.out.println("id:"+u.getId() + " Nombre: "+u.getUserName()));
 
-				User user = userDAO.findOne("Maria");
+				//Buscar un usuario por nombre
+				User user = userDAO.findOne("mery");
 				System.out.println("Usuario Encontrado: "+ user.getUserName());
 
+				// Buscar todos los artículos
 				Iterable<Article> articles = articleDAO.findAll();
 				articles.forEach(n -> System.out.println( "Artículo: "+n.getName()));
+
+				//Buscar los artículos de un usuario en específico.
+				Iterable<Article> user_art = articleDAO.findAllFromUser(2);
+				user_art.forEach(n-> System.out.println(n.getName()));
+
 
 			}
 		};
