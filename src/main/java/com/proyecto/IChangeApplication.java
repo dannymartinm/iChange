@@ -45,6 +45,10 @@ public class IChangeApplication {
 				Iterable<Article> user_art = articleDAO.findAllFromUser(2);
 				user_art.forEach(n-> System.out.println(n.getName()));
 
+				//Borrar un usuario en específico
+				userDAO.deleteUser(user);
+				System.out.println("Usuario borrado: "+ user.getUserName());
+
 			}
 		};
 	}

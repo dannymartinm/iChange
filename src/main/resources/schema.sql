@@ -25,5 +25,6 @@ CREATE TABLE article (
   owner VARCHAR (55),
   FOREIGN KEY (owner)
   REFERENCES user(idUser)
+  ON DELETE CASCADE
 );
 

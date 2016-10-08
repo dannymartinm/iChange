@@ -42,8 +42,11 @@ public class UserDAO{
 
         return userUpdate;
     }
-
-
+    public int deleteUser(User user){
+        int userDeleted = jdbcOperations.update("Delete from user where nickname = ?", new Object[]{user.getNickname()});
+        articleDAO.deleteArticles(user.getIdUser());
+        return userDeleted;
+    }
 
     private final class userMapper implements RowMapper<User>{
 

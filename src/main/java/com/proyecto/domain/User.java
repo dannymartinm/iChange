@@ -14,14 +14,9 @@ public class User {
     private String password;
     private String mail;
     private String nickname;
-   private double rate;
-
-
-
+    private double rate;
     private boolean role;
-
     private List<Article> articleList;
-
     private LocalDateTime dateEdit;
     private LocalDateTime dateCreation;
 
