@@ -28,3 +28,17 @@ CREATE TABLE article (
   ON DELETE CASCADE
 );
 
+DROP TABLE if EXISTS exchange;
+CREATE TABLE exchange(
+  idExchange bigint auto_increment PRIMARY KEY,
+  zoneEx VARCHAR (50),
+  isDone BOOL NOT NULL DEFAULT '0',
+  dateEx TIMESTAMP
+);
+
+DRoP TABLE if EXISTS catalog;
+CREATE TABLE catalog(
+  idCatalog bigint auto_increment PRIMARY KEY,
+  descriptionCatalog VARCHAR (255)
+);
+

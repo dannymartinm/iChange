@@ -1,8 +1,10 @@
 package com.proyecto;
 
 import com.proyecto.DAO.ArticleDAO;
+import com.proyecto.DAO.ExchangeDAO;
 import com.proyecto.DAO.UserDAO;
 import com.proyecto.domain.Article;
+import com.proyecto.domain.Exchange;
 import com.proyecto.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +24,9 @@ public class IChangeApplication {
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private ExchangeDAO exchangeDAO;
 
 	@Bean
 	CommandLineRunner runner() {
@@ -48,7 +53,13 @@ public class IChangeApplication {
 				//Borrar un usuario en específico
 				userDAO.deleteUser(user);
 				System.out.println("Usuario borrado: "+ user.getUserName());
-
+/*
+				// imaginemos que se ha producido un intercambio y lo queremos puntuar(El metodo si que funciona pero hay que pensarlo!!)
+				User user2 = userDAO.findOne("josi");
+				Exchange exchange = new Exchange();
+				exchange.setDone(true);
+				exchangeDAO.evaluateExchange(7.5, user2,exchange );
+*/
 			}
 		};
 	}

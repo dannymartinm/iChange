@@ -53,6 +53,11 @@ public class ArticleDAO {
 
         return jdbcOperations.update(sql,new Object[]{idUSer} );
     }
+    //*******CAL??
+    public int deleteOneArticle (int idArticle){
+        String sql = "Delete from article where idArticle = ?";
+        return jdbcOperations.update(sql, new Object[idArticle]);
+    }
 
 
     public int[] saveUserArticles(User owner) {
