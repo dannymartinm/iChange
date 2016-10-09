@@ -7,7 +7,7 @@ CREATE TABLE user
   password VARCHAR (15),
   mail VARCHAR (50),
   nickname VARCHAR (50) UNIQUE,
-  rate double,
+  rate double DEFAULT '-1',
   date_creation TIMESTAMP,
   date_edit TIMESTAMP
 );

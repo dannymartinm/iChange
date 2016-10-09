@@ -13,11 +13,13 @@ public class Exchange {
     private boolean isDone;
     private LocalDateTime dateEx;
 
+
     public Exchange(int idExchange, String zoneEx,LocalDateTime dateEx ){
         this.idExchange = idExchange;
         this.zoneEx = zoneEx;
         this.isDone = false;
         this.dateEx = dateEx;
+
     }
     public Exchange(){}
 

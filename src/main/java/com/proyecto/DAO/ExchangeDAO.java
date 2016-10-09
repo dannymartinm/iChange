@@ -16,18 +16,34 @@ public class ExchangeDAO {
     public ExchangeDAO (JdbcOperations jdbcOperations) {
         this.jdbcOperations = jdbcOperations;
     }
-/* --> Mirar bien como hacerlo
-    public boolean executeExchange(){
-        //Para poder producirse el intercambio los dos usuarios tienen que ponerse de acuerdo
+    //Solo he de hacer intercambio...,de lo demás se encargará el controlador
+    public  void executeExchange(User u1, int idA1,  User u2, int idA2 ){
+
+        String sql = "UPDATE article SET owner = ? WHERE idArticle= ?";
+        jdbcOperations.update(sql, u1.getIdUser(), idA2);
+        jdbcOperations.update(sql, u2.getIdUser(), idA1);
+        //restar cantidad, si tiene + de 1
+        //debería de poner al exchange que el isDone = true;
     }
-*/
+
     public void evaluateExchange(double value, User user, Exchange exchange){
 
         if(exchange.isDone()) {
+
             String sql = "UPDATE user SET rate = ? WHERE nickname = ?";
-            jdbcOperations.update(sql, value, user.getNickname());
+            double val = getRateBD(user.getNickname());
+            if(val != -1) {
+                jdbcOperations.update(sql, (value+ val)/2, user.getNickname());
+            }
+            else{
+            jdbcOperations.update(sql, value, user.getNickname());}
 
         }
+
+    }
+    private double getRateBD (String nickname){
+        String sql = " SELECT rate FROM user WHERE nickname = ?";
+        return jdbcOperations.queryForObject(sql,new Object[]{nickname},Double.class);
 
     }
 }

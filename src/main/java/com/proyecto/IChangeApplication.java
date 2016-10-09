@@ -53,13 +53,25 @@ public class IChangeApplication {
 				//Borrar un usuario en específico
 				userDAO.deleteUser(user);
 				System.out.println("Usuario borrado: "+ user.getUserName());
-/*
-				// imaginemos que se ha producido un intercambio y lo queremos puntuar(El metodo si que funciona pero hay que pensarlo!!)
+
+				// imaginemos que se ha producido un intercambio y lo queremos puntuar
 				User user2 = userDAO.findOne("josi");
 				Exchange exchange = new Exchange();
 				exchange.setDone(true);
-				exchangeDAO.evaluateExchange(7.5, user2,exchange );
-*/
+				exchangeDAO.evaluateExchange(5, user2,exchange );//debería de tener guardado 2'5
+
+				User user3 = userDAO.findOne("Jota");
+				exchangeDAO.evaluateExchange(3,user3 , exchange);//debería de tener guardado 3
+
+				User user5 = userDAO.findOne("jordinho");
+				exchangeDAO.evaluateExchange(5,user5 , exchange);//3'5
+
+				//Hacer intercambio entre 2 usuarios
+				//usuario con id = 1 posee el artículo libro Harry Potter
+				//usuario con id = 2 posee el artículo vestido vintage
+
+				exchangeDAO.executeExchange(user2, 2, user5, 1);
+
 			}
 		};
 	}
