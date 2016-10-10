@@ -45,8 +45,10 @@ public class ArticleDAO {
     }
 
     public int updateArticle(Article article) {
-        return jdbcOperations.update("update article set idArticle = ?, name = ?, description = ?, time = ?, yearMonth = ?, quantity = ?, date_edit = ? where date_ creation = ?",
-                article.getIdArticle(), article.getName(), article.getDescription(),article.getTime(), article.getYearMonth(), article.getQuantity(), LocalDateTime.now(), article.getDateCreation());
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+
+        return jdbcOperations.update("update article set name = ?, description = ?, time = ?, yearMonth = ?, quantity = ?, date_edit = ? where idArticle = ?",
+                article.getName(), article.getDescription(),article.getTime(), article.getYearMonth(), article.getQuantity(), timestamp, article.getIdArticle());
     }
     public int deleteArticles(int idUSer){
         String sql = "Delete from article where owner = ? ";

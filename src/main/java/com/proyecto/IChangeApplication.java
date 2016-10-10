@@ -70,14 +70,21 @@ public class IChangeApplication {
 				//usuario con id = 1 posee el artículo libro Harry Potter
 				//usuario con id = 2 posee el artículo vestido vintage
 
-				exchangeDAO.executeExchange(user2, 2, user5, 1);
+			//	exchangeDAO.executeExchange(user2, 2, user5, 1);
 
 
 				//Editar un usuario
 				user3.setUserName("hola");
 				user3.setZone("bcn");
 				userDAO.updateUser(user3);
+
+				//Editar un artículo
+				Article article = articleDAO.findOne(1);
+				article.setName("editandoartículo");
+				article.setQuantity(22);
+				articleDAO.updateArticle(article);
 			}
+
 		};
 	}
 }
