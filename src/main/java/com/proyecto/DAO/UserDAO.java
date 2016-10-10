@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.proyecto.domain.User;
@@ -49,7 +50,8 @@ public class UserDAO{
     }
 
     public int updateUser(User user) {
-        int userUpdate = jdbcOperations.update("update user set username=?, password=?, zone=?, mail=? WHERE idUser=?", user.getUserName(), user.getPassword(), user.getZone(), user.getMail(), user.getIdUser());
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        int userUpdate = jdbcOperations.update("update user set username=?, password=?, zone=?, mail=?,  date_edit = ? WHERE idUser=?", user.getUserName(), user.getPassword(), user.getZone(), user.getMail(), timestamp, user.getIdUser());
         return userUpdate;
     }
 
