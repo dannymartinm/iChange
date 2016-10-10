@@ -1,9 +1,11 @@
 package com.proyecto;
 
 import com.proyecto.DAO.ArticleDAO;
+import com.proyecto.DAO.CategoryDAO;
 import com.proyecto.DAO.ExchangeDAO;
 import com.proyecto.DAO.UserDAO;
 import com.proyecto.domain.Article;
+import com.proyecto.domain.Category;
 import com.proyecto.domain.Exchange;
 import com.proyecto.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class IChangeApplication {
 
 	@Autowired
 	private ExchangeDAO exchangeDAO;
+
+    @Autowired
+    private CategoryDAO categoryDAO;
 
 	@Bean
 	CommandLineRunner runner() {
@@ -78,12 +83,17 @@ public class IChangeApplication {
 				user3.setZone("bcn");
 				userDAO.updateUser(user3);
 
-				//Editar un artículo. 
+				//Editar un artículo.
 				Article article = articleDAO.findOne(1);
 				article.setName("editandoartículo");
 				article.setQuantity(22);
 				articleDAO.updateArticle(article);
-			}
+
+                //Listar las categorías.
+                Iterable<Category> categories = categoryDAO.findAll();
+                categories.forEach(u -> System.out.println("id:"+u.getIdCategory() + " Nombre: "+u.getNameCategory()+" Description: "+u.getDescription()));
+
+            }
 
 		};
 	}

@@ -53,3 +53,11 @@ CREATE TABLE user_exchange(
   FOREIGN KEY (idUserEx) REFERENCES  user(idUser)
 );
 
+DROP TABLE if EXISTS category;
+CREATE TABLE category(
+  idCategory bigint auto_increment PRIMARY KEY,
+  nameCategory VARCHAR (30),
+  description VARCHAR (140),
+  date_creation TIMESTAMP,
+  date_edit TIMESTAMP
+);

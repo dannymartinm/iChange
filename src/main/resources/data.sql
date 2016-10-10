@@ -11,3 +11,5 @@ INSERT INTO article (idArticle, name, description, time, yearMonth, quantity, da
 INSERT INTO article (idArticle, name, description, time, yearMonth, quantity, date_creation, date_edit, owner, idExchange) VALUES (2,'libro harry potter','Cádiz del FUego', 5, 'M', 1, '2016-09-20','2016-09-20', 1,1);
 INSERT INTO article (idArticle, name, description, time, yearMonth, quantity, date_creation, date_edit, owner, idExchange) VALUES (4,'reloj de pulsera','azul y de flores', 4, 'M', 1, '2016-09-20','2016-09-20', 4,1);
 
+INSERT INTO category (idCategory, nameCategory, description, date_creation, date_edit) VALUES  (1, 'Books', 'Libros','2016-09-20' ,'2016-09-20' );
+INSERT INTO category (idCategory, nameCategory, description, date_creation, date_edit) VALUES  (2, 'Movies', 'Películas','2016-09-20' ,'2016-09-20' );
