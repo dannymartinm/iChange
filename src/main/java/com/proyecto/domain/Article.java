@@ -12,6 +12,7 @@ public class Article {
     private int time;
     private String yearMonth;
     private int quantity;
+    private int idExchange;
 
     private LocalDateTime dateCreation;
     private LocalDateTime dateEdit;
@@ -20,13 +21,14 @@ public class Article {
 
     }
 
-    public Article(int idArticle, String name, String description, int time, String yearMonth, int quantity, LocalDateTime dateEdit, LocalDateTime dateCreation) {
+    public Article(int idArticle, String name, String description, int time, String yearMonth, int quantity, int idExchange, LocalDateTime dateEdit, LocalDateTime dateCreation) {
         this.idArticle = idArticle;
         this.name = name;
         this.description = description;
         this.time = time;
         this.yearMonth = yearMonth;
         this.quantity = quantity;
+        this.idExchange= idExchange;
         this.dateCreation = dateCreation;
         this.setDateEdit(dateEdit);
     }
@@ -79,6 +81,14 @@ public class Article {
         this.quantity = quantity;
     }
 
+    public int getIdExchange() {
+        return idExchange;
+    }
+
+    public void setIdExchange(int idExchange) {
+        this.idExchange = idExchange;
+    }
+
     public LocalDateTime getDateEdit() {
         return dateEdit;
     }
@@ -94,6 +104,7 @@ public class Article {
     public void setDateCreation(LocalDateTime dateCreation) {
         this.dateCreation = dateCreation;
     }
+
     @Override
     public String toString() {
         return "Article{" +
@@ -103,8 +114,9 @@ public class Article {
                 ", time=" + time +
                 ", yearMonth='" + yearMonth + '\'' +
                 ", quantity=" + quantity +
-                ", dateEdit=" + dateEdit +
+                ", idExchange=" + idExchange +
                 ", dateCreation=" + dateCreation +
+                ", dateEdit=" + dateEdit +
                 '}';
     }
 }

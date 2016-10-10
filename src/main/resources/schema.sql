@@ -1,7 +1,7 @@
 DROP TABLE if EXISTS user;
 CREATE TABLE user
 (
-  idUser INT (6) auto_increment PRIMARY KEY,
+  idUser bigint auto_increment PRIMARY KEY,
   username VARCHAR (55),
   zone VARCHAR (40),
   password VARCHAR (15),
@@ -10,6 +10,14 @@ CREATE TABLE user
   rate double DEFAULT '-1',
   date_creation TIMESTAMP,
   date_edit TIMESTAMP
+);
+
+DROP TABLE if EXISTS exchange;
+CREATE TABLE exchange(
+  idExchange bigint auto_increment PRIMARY KEY,
+  zoneEx VARCHAR (50),
+  isDone BOOL NOT NULL DEFAULT '0',
+  dateEx TIMESTAMP
 );
 
 DROP TABLE if EXISTS article;
@@ -23,22 +31,25 @@ CREATE TABLE article (
   date_creation TIMESTAMP ,
   date_edit TIMESTAMP ,
   owner VARCHAR (55),
-  FOREIGN KEY (owner)
-  REFERENCES user(idUser)
+  idExchange bigint DEFAULT 0,
+  FOREIGN KEY (owner) REFERENCES user(idUser)
   ON DELETE CASCADE
+
 );
 
-DROP TABLE if EXISTS exchange;
-CREATE TABLE exchange(
-  idExchange bigint auto_increment PRIMARY KEY,
-  zoneEx VARCHAR (50),
-  isDone BOOL NOT NULL DEFAULT '0',
-  dateEx TIMESTAMP
-);
+
 
 DRoP TABLE if EXISTS catalog;
 CREATE TABLE catalog(
   idCatalog bigint auto_increment PRIMARY KEY,
   descriptionCatalog VARCHAR (255)
+);
+
+DROP TABLE if EXISTS user_exchange;
+CREATE TABLE user_exchange(
+  idExchange bigint,
+  idUserEx bigint,
+  FOREIGN KEY (idExchange) REFERENCES exchange(idExchange),
+  FOREIGN KEY (idUserEx) REFERENCES  user(idUser)
 );
 

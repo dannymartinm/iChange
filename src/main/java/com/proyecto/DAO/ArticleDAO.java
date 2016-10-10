@@ -1,5 +1,6 @@
 package com.proyecto.DAO;
 
+import com.proyecto.domain.Exchange;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcOperations;
 
@@ -39,9 +40,9 @@ public class ArticleDAO {
         return jdbcOperations.query("select * from article where owner = ?", new Object[]{idArticle}, new articleMapper());
     }
 
-    public int save(Article article, User owner) {
-        return jdbcOperations.update("insert into article(idArticle, name, description, time, yearMonth, quantity, date_creation, date_edit, owner) values(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                article.getIdArticle(), article.getName(), article.getDescription(), article.getTime(), article.getYearMonth(), article.getQuantity(), Timestamp.valueOf(article.getDateCreation()), Timestamp.valueOf(article.getDateEdit()), owner.getUserName());
+    public int save(Article article, User owner, Exchange exchange) {
+        return jdbcOperations.update("insert into article(idArticle, name, description, time, yearMonth, quantity, date_creation, date_edit, owner, idExchange) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                article.getIdArticle(), article.getName(), article.getDescription(), article.getTime(), article.getYearMonth(), article.getQuantity(), Timestamp.valueOf(article.getDateCreation()), Timestamp.valueOf(article.getDateEdit()), owner.getUserName(), exchange.getIdExchange());
     }
 
     public int updateArticle(Article article) {

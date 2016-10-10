@@ -5,6 +5,8 @@ import com.proyecto.domain.User;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+
 /**
  * Created by Usuario on 08/10/2016.
  */
@@ -44,6 +46,11 @@ public class ExchangeDAO {
     private double getRateBD (String nickname){
         String sql = " SELECT rate FROM user WHERE nickname = ?";
         return jdbcOperations.queryForObject(sql,new Object[]{nickname},Double.class);
+
+    }
+
+    public int save(Exchange exchange) {
+       return jdbcOperations.update("insert into user values(?, ?, ?, ?)", exchange.getIdExchange(), exchange.getZoneEx(), Timestamp.valueOf(exchange.getDateEx()));
 
     }
 }

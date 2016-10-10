@@ -78,7 +78,7 @@ public class IChangeApplication {
 				user3.setZone("bcn");
 				userDAO.updateUser(user3);
 
-				//Editar un artículo
+				//Editar un artículo. 
 				Article article = articleDAO.findOne(1);
 				article.setName("editandoartículo");
 				article.setQuantity(22);
