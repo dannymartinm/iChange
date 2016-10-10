@@ -59,5 +59,9 @@
 		</plugins>
 	</build>
 
+	<dependency>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+
 
 </project>

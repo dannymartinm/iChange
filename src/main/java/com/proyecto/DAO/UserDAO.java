@@ -48,6 +48,11 @@ public class UserDAO{
         return userDeleted;
     }
 
+    public int updateUser(User user) {
+        int userUpdate = jdbcOperations.update("update user set username=?, password=?, zone=?, mail=? WHERE idUser=?", user.getUserName(), user.getPassword(), user.getZone(), user.getMail(), user.getIdUser());
+        return userUpdate;
+    }
+
     private final class userMapper implements RowMapper<User>{
 
         @Override

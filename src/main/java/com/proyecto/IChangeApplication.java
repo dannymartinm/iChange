@@ -72,6 +72,11 @@ public class IChangeApplication {
 
 				exchangeDAO.executeExchange(user2, 2, user5, 1);
 
+
+				//Editar un usuario
+				user3.setUserName("hola");
+				user3.setZone("bcn");
+				userDAO.updateUser(user3);
 			}
 		};
 	}
