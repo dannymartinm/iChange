@@ -33,6 +33,8 @@ CREATE TABLE article (
   owner VARCHAR (55),
   idExchange bigint DEFAULT 0,
   FOREIGN KEY (owner) REFERENCES user(idUser)
+  ON DELETE CASCADE,
+  FOREIGN KEY (idExchange) REFERENCES  exchange(idExchange)
   ON DELETE CASCADE
 
 );
