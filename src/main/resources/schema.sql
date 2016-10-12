@@ -39,14 +39,6 @@ CREATE TABLE article (
 
 );
 
-
-
-DRoP TABLE if EXISTS catalog;
-CREATE TABLE catalog(
-  idCatalog bigint auto_increment PRIMARY KEY,
-  descriptionCatalog VARCHAR (255)
-);
-
 DROP TABLE if EXISTS user_exchange;
 CREATE TABLE user_exchange(
   idExchange bigint,

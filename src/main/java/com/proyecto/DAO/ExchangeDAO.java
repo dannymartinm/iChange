@@ -34,14 +34,20 @@ public class ExchangeDAO {
 
             String sql = "UPDATE user SET rate = ? WHERE nickname = ?";
             double val = getRateBD(user.getNickname());
+            int total = getTotalExchange(user.getIdUser());
             if(val != -1) {
-                jdbcOperations.update(sql, (value+ val)/2, user.getNickname());
+                jdbcOperations.update(sql, (val+value)/total , user.getNickname());
             }
             else{
             jdbcOperations.update(sql, value, user.getNickname());}
 
         }
 
+    }
+
+    private int getTotalExchange(int idUser){
+        String sql = "SELECT count(*) FROM user_exchange WHERE idUser = ? ";
+        return jdbcOperations.queryForObject(sql, new Object[]{idUser}, Integer.class);
     }
     private double getRateBD (String nickname){
         String sql = " SELECT rate FROM user WHERE nickname = ?";
