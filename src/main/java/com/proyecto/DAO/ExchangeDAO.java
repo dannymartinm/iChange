@@ -31,22 +31,19 @@ public class ExchangeDAO {
     public void evaluateExchange(double value, User user, Exchange exchange){
 
         if(exchange.isDone()) {
-
             String sql = "UPDATE user SET rate = ? WHERE nickname = ?";
             double val = getRateBD(user.getNickname());
             int total = getTotalExchange(user.getIdUser());
             if(val != -1) {
-                jdbcOperations.update(sql, (val+value)/total , user.getNickname());
+                jdbcOperations.update(sql, ((val*total)+value)/total+1 , user.getNickname());
             }
             else{
             jdbcOperations.update(sql, value, user.getNickname());}
-
         }
 
     }
-
     private int getTotalExchange(int idUser){
-        String sql = "SELECT count(*) FROM user_exchange WHERE idUser = ? ";
+        String sql = "SELECT count(*) FROM user_exchange WHERE idUserEx = ? ";
         return jdbcOperations.queryForObject(sql, new Object[]{idUser}, Integer.class);
     }
     private double getRateBD (String nickname){

@@ -55,3 +55,10 @@ CREATE TABLE category(
   date_creation TIMESTAMP,
   date_edit TIMESTAMP
 );
+DROP TABLE if EXISTS article_category;
+CREATE TABLE article_category(
+   idArt bigint,
+   idCat bigint,
+   FOREIGN KEY (idArt) REFERENCES article(idArticle),
+   FOREIGN KEY (idCat) REFERENCES  category(idCategory)
+);

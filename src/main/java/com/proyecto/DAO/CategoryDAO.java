@@ -32,7 +32,6 @@ public class CategoryDAO {
                 category.getIdCategory(), category.getNameCategory(), category.getDescription(), Timestamp.valueOf(category.getDateCreation()), Timestamp.valueOf(category.getDateEdit()));
     }
 
-
     private final class categoryMapper implements RowMapper<Category> {
         @Override
         public Category mapRow(ResultSet rs, int row) throws SQLException {
