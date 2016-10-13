@@ -27,9 +27,18 @@ public class CategoryDAO {
         return jdbcOperations.query("Select * from category", new CategoryDAO.categoryMapper());
     }
 
+    public Category findOne(int idCategory) {
+        return jdbcOperations.queryForObject("Select * from category where idCategory = ?", new Object[]{idCategory}, new categoryMapper());
+    }
+
     public int save(Category category) {
         return jdbcOperations.update("insert into category(idCategory, nameCategory, date_creation, date_edit) values(?, ?, ?, ?)",
                 category.getIdCategory(), category.getNameCategory(), category.getDescription(), Timestamp.valueOf(category.getDateCreation()), Timestamp.valueOf(category.getDateEdit()));
+    }
+
+    public int deleteOneCategory (Category category){
+        int categoryDeleted=  jdbcOperations.update("Delete from category where idCategory = ?", new Object[]{category.getIdCategory()});
+        return categoryDeleted;
     }
 
     private final class categoryMapper implements RowMapper<Category> {
