@@ -15,7 +15,7 @@ CREATE TABLE user
 DROP TABLE if EXISTS exchange;
 CREATE TABLE exchange(
   idExchange bigint auto_increment PRIMARY KEY,
-  zoneEx VARCHAR (50),
+  zoneEx VARCHAR (50) DEFAULT 'Barcelona',
   isDone BOOL NOT NULL DEFAULT '0',
   dateEx TIMESTAMP
 );
@@ -33,8 +33,6 @@ CREATE TABLE article (
   owner VARCHAR (55),
   idExchange bigint DEFAULT 0,
   FOREIGN KEY (owner) REFERENCES user(idUser)
-  ON DELETE CASCADE,
-  FOREIGN KEY (idExchange) REFERENCES  exchange(idExchange)
   ON DELETE CASCADE
 
 );
