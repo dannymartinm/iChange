@@ -6,6 +6,7 @@ import com.proyecto.domain.Article;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -23,48 +24,31 @@ public class ExchangeDAO {
 
 
     //Solo he de hacer intercambio...,de lo demás se encargará el controlador
-    public  void executeExchange(User u1, Article idA1, User u2, Article idA2){
+    public  void executeExchange(User u1, Article idA1, User u2, Article idA2, String zone){
 
         int new_quantity1 = getQuantity(idA1.getIdArticle());
         int new_quantity2 = getQuantity(idA2.getIdArticle());
 
-     /*   if (new_quantity1 == 1 && new_quantity2==1){
-            jdbcOperations.update("DELETE FROM article WHERE idArticle = ?", idA1.getIdArticle());
-            jdbcOperations.update("DELETE FROM article WHERE idArticle = ?", idA2.getIdArticle());
-        }
-        else {
-
-            if(new_quantity1 == 1 && new_quantity2>1){
-                jdbcOperations.update("DELETE FROM article WHERE idArticle = ?", idA1.getIdArticle());
-                jdbcOperations.update("UPDATE article SET  quantity = ? WHERE idArticle = ?", new_quantity2 - 1, idA2.getIdArticle());
-
-            }
-            else if(new_quantity2 == 1 && new_quantity1>1){
-                jdbcOperations.update("DELETE FROM article WHERE idArticle = ?", idA2.getIdArticle());
-                jdbcOperations.update("UPDATE article SET  quantity = ? WHERE idArticle = ?", new_quantity1 - 1, idA1.getIdArticle());
-
-            }
-            else { */
                 jdbcOperations.update("UPDATE article SET quantity = ? WHERE idArticle = ?", new_quantity1 - 1, idA1.getIdArticle());
                 jdbcOperations.update("UPDATE article SET quantity = ? WHERE idArticle = ?", new_quantity2 - 1, idA2.getIdArticle());
-        //  }
-     //   }
 
-        Exchange exchange = new Exchange();
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        int idEx = jdbcOperations.queryForObject("SELECT idExchange FROM exchange", Integer.class);
+        Exchange exchange = new Exchange(idEx, zone, timestamp);
         save(exchange);
 
+/*
         int idEx = jdbcOperations.queryForObject("SELECT idExchange FROM exchange", Integer.class);
         jdbcOperations.update("UPDATE article SET idExchange = ? where idArticle = ?", idEx, idA1.getIdArticle());
         jdbcOperations.update("UPDATE article SET idExchange = ? where idArticle = ?", idEx, idA2.getIdArticle());
 
         jdbcOperations.update("UPDATE exchange SET isDone = ? where idExchange = ?", 1, idEx);
-
+*/
     }
 
     private int getQuantity(int idArticle){
         String sql = "SELECT quantity FROM article where idArticle = ?";
         return jdbcOperations.queryForObject(sql, new Object[]{idArticle}, Integer.class);
-
     }
 
     public void evaluateExchange(double value, User user, Exchange exchange){
@@ -93,7 +77,10 @@ public class ExchangeDAO {
 
     public int save(Exchange exchange) {
         jdbcOperations.update("update article set idExchange = ?", exchange.getIdExchange());
-       return jdbcOperations.update("insert into exchange(idExchange, zoneEx, isDone, dateEx) values(?, ?, ?, ?)", exchange.getIdExchange(), exchange.getZoneEx(), 1,Timestamp.valueOf(exchange.getDateEx()));
+       return jdbcOperations.update("insert into exchange( zoneEx, isDone, dateEx) values( ?, ?, ?)",  exchange.getZoneEx(), 1,exchange.getDateEx());
     }
+   /* public int getNewId(){
+
+    }*/
 }
 

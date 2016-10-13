@@ -99,7 +99,20 @@ public class IChangeApplication {
 				Article article1= articleDAO.findOne(1);
 				Article article2= articleDAO.findOne(2);
 
-				//exchangeDAO.executeExchange(josep,article1,jordi,article2);
+				exchangeDAO.executeExchange(josep,article1,jordi,article2, "Barcelona");
+/*
+				Article article3= articleDAO.findOne(3);
+				Article article4= articleDAO.findOne(5);
+				exchangeDAO.executeExchange(josep,article3,jordi,article4, "México");*/
+
+				//Borrar categoría
+				Category categoria = categoryDAO.findOne(1);
+				categoryDAO.deleteOneCategory(categoria);
+
+				//Editar categoría
+				Category categoria2= categoryDAO.findOne(2);
+				categoria2.setNameCategory("Editando Categoría");
+				categoryDAO.updateCategory(categoria2);
             }
 
 		};

@@ -1,7 +1,9 @@
 package com.proyecto.domain;
-
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
+
 
 /**
  * Created by Usuario on 08/10/2016.
@@ -11,10 +13,10 @@ public class Exchange {
     private int idExchange;
     private String zoneEx;
     private boolean isDone;
-    private LocalDateTime dateEx;
+    private Timestamp dateEx;
 
 
-    public Exchange(int idExchange, String zoneEx,LocalDateTime dateEx ){
+    public Exchange(int idExchange, String zoneEx, Timestamp dateEx ){
         this.idExchange = idExchange;
         this.zoneEx = zoneEx;
         this.isDone = false;
@@ -47,11 +49,11 @@ public class Exchange {
         isDone = done;
     }
 
-    public LocalDateTime getDateEx() {
+    public Timestamp getDateEx() {
         return dateEx;
     }
 
-    public void setDateEx(LocalDateTime dateEx) {
+    public void setDateEx(Timestamp dateEx) {
         this.dateEx = dateEx;
     }
 }
