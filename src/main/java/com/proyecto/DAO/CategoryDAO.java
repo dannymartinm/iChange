@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -39,6 +40,12 @@ public class CategoryDAO {
     public int deleteOneCategory (Category category){
         int categoryDeleted=  jdbcOperations.update("Delete from category where idCategory = ?", new Object[]{category.getIdCategory()});
         return categoryDeleted;
+    }
+
+    public int updateCategory(Category category) {
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        return jdbcOperations.update("update category set nameCategory = ?, description = ?, date_edit = ? where idCategory = ?",
+                category.getNameCategory(), category.getDescription(), timestamp, category.getIdCategory());
     }
 
     private final class categoryMapper implements RowMapper<Category> {
