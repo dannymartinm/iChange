@@ -41,6 +41,7 @@ public class ExchangeDAO {
             jdbcOperations.update(sql, value, user.getNickname());}
         }
 
+
     }
     private int getTotalExchange(int idUser){
         String sql = "SELECT count(*) FROM user_exchange WHERE idUserEx = ? ";
@@ -53,6 +54,7 @@ public class ExchangeDAO {
     }
 
     public int save(Exchange exchange) {
+        jdbcOperations.update("update article set idExchange = ?", exchange.getIdExchange());
        return jdbcOperations.update("insert into user values(?, ?, ?, ?)", exchange.getIdExchange(), exchange.getZoneEx(), Timestamp.valueOf(exchange.getDateEx()));
 
     }

@@ -93,6 +93,7 @@ public class IChangeApplication {
                 Iterable<Category> categories = categoryDAO.findAll();
                 categories.forEach(u -> System.out.println("id:"+u.getIdCategory() + " Nombre: "+u.getNameCategory()+" Description: "+u.getDescription()));
 
+
             }
 
 		};
