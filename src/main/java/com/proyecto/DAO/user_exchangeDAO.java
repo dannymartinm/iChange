@@ -15,10 +15,10 @@ public class user_exchangeDAO {
 
     public user_exchangeDAO(JdbcOperations jdbcOperations) {this.jdbcOperations = jdbcOperations;}
 
-    public int addUserExchange(User user, Exchange exchange){
+    public int addUserExchange(User user, User user2, Exchange exchange){
 
-        String sql = "INSERT INTO user_exchange VALUES(?,?)";
-        return jdbcOperations.update(sql,user.getIdUser(), exchange.getIdExchange());
+        String sql = "INSERT INTO user_exchange VALUES(?,?,?)";
+        return jdbcOperations.update(sql,user.getIdUser(), user2.getIdUser(),exchange.getIdExchange());
 
     }
 
