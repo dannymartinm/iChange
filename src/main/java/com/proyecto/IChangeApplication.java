@@ -61,22 +61,8 @@ public class IChangeApplication {
 
 				// imaginemos que se ha producido un intercambio y lo queremos puntuar
 				User user2 = userDAO.findOne("josi");
-			//	Exchange exchange = new Exchange();
-			//	exchange.setDone(true);
-			//	exchangeDAO.evaluateExchange(5, user2,exchange );//debería de tener guardado 2'5
-
 				User user3 = userDAO.findOne("Jota");
-			//	exchangeDAO.evaluateExchange(3,user3 , exchange);//debería de tener guardado 3
-
 				User user5 = userDAO.findOne("jordinho");
-			//	exchangeDAO.evaluateExchange(5,user5 , exchange);//3'5
-
-				//Hacer intercambio entre 2 usuarios
-				//usuario con id = 1 posee el artículo libro Harry Potter
-				//usuario con id = 2 posee el artículo vestido vintage
-
-			//	exchangeDAO.executeExchange(user2, 2, user5, 1);
-
 
 				//Editar un usuario
 				user3.setUserName("hola");
@@ -100,10 +86,6 @@ public class IChangeApplication {
 				Article article2= articleDAO.findOne(2);
 
 				exchangeDAO.executeExchange(josep,article1,jordi,article2, "Barcelona");
-/*
-				Article article3= articleDAO.findOne(3);
-				Article article4= articleDAO.findOne(5);
-				exchangeDAO.executeExchange(josep,article3,jordi,article4, "México");*/
 
 				//Borrar categoría
 				Category categoria = categoryDAO.findOne(1);
@@ -113,6 +95,12 @@ public class IChangeApplication {
 				Category categoria2= categoryDAO.findOne(2);
 				categoria2.setNameCategory("Editando Categoría");
 				categoryDAO.updateCategory(categoria2);
+
+				//añadir puntuación
+				//exchangeDAO.evaluateExchange(1,user2);
+				//exchangeDAO.evaluateExchange(4,user2);
+				//exchangeDAO.evaluateExchange(3,jordi);
+
             }
 
 		};

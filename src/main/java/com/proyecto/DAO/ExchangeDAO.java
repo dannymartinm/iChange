@@ -16,10 +16,12 @@ import java.time.LocalDateTime;
 @Repository
 public class ExchangeDAO {
 
-    JdbcOperations jdbcOperations;
+    private JdbcOperations jdbcOperations;
+    private user_exchangeDAO user_exchangeDAO;
 
-    public ExchangeDAO (JdbcOperations jdbcOperations) {
+    public ExchangeDAO (JdbcOperations jdbcOperations, user_exchangeDAO user_exchangeDAO) {
         this.jdbcOperations = jdbcOperations;
+        this.user_exchangeDAO = user_exchangeDAO;
     }
 
 
@@ -36,6 +38,8 @@ public class ExchangeDAO {
         int idEx = jdbcOperations.queryForObject("SELECT idExchange FROM exchange", Integer.class);
         Exchange exchange = new Exchange(idEx, zone, timestamp);
         save(exchange);
+        user_exchangeDAO.addUserExchange(u1, exchange);//añadir otro usuario más
+        user_exchangeDAO.addUserExchange(u2, exchange);
 
 /*
         int idEx = jdbcOperations.queryForObject("SELECT idExchange FROM exchange", Integer.class);
@@ -51,13 +55,14 @@ public class ExchangeDAO {
         return jdbcOperations.queryForObject(sql, new Object[]{idArticle}, Integer.class);
     }
 
-    public void evaluateExchange(double value, User user, Exchange exchange){
-
-        if(exchange.isDone()) {
+    public void evaluateExchange(double value, User user){
+        int idExch = getExchange(user.getIdUser());
+        boolean isDone = jdbcOperations.queryForObject("SELECT isDone FROM exchange WHERE idExchange = ?", new Object[]{idExch}, Boolean.class);
+        if(isDone) {
             String sql = "UPDATE user SET rate = ? WHERE nickname = ?";
             double val = getRateBD(user.getNickname());
             int total = getTotalExchange(user.getIdUser());
-            if(val != -1) {
+            if(val != -1 && val!= 0) {
                 jdbcOperations.update(sql, ((val*total)+value)/total+1 , user.getNickname());
             }
             else{
@@ -72,15 +77,16 @@ public class ExchangeDAO {
     private double getRateBD (String nickname){
         String sql = " SELECT rate FROM user WHERE nickname = ?";
         return jdbcOperations.queryForObject(sql,new Object[]{nickname},Double.class);
-
+    }
+    private int getExchange(int idUser){
+        String sql = "SELECT idExchange FROM user_exchange WHERE idUserEx = ? ";
+        return jdbcOperations.queryForObject(sql,new Object[]{idUser}, Integer.class );
     }
 
     public int save(Exchange exchange) {
         jdbcOperations.update("update article set idExchange = ?", exchange.getIdExchange());
        return jdbcOperations.update("insert into exchange( zoneEx, isDone, dateEx) values( ?, ?, ?)",  exchange.getZoneEx(), 1,exchange.getDateEx());
     }
-   /* public int getNewId(){
 
-    }*/
 }
 

@@ -62,7 +62,6 @@ public class ArticleDAO {
         return jdbcOperations.update(sql, new Object[idArticle]);
     }
 
-
     public int[] saveUserArticles(User owner) {
         return jdbcOperations.batchUpdate("INSERT INTO article (idArticle, name, description, time, yearMonth, quantity, date_creation, date_edit, owner) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", new BatchPreparedStatementSetter() {
             @Override

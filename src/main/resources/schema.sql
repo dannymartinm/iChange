@@ -39,8 +39,8 @@ CREATE TABLE article (
 
 DROP TABLE if EXISTS user_exchange;
 CREATE TABLE user_exchange(
-  idExchange bigint,
   idUserEx bigint,
+  idExchange bigint,
   FOREIGN KEY (idExchange) REFERENCES exchange(idExchange),
   FOREIGN KEY (idUserEx) REFERENCES  user(idUser)
 );
