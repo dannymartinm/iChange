@@ -13,6 +13,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import java.util.Set;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class IChangeApplication {
@@ -102,7 +104,22 @@ public class IChangeApplication {
 				Article article3 =articleDAO.findOne(3);
 				exchangeDAO.executeExchange(jordi,article2,merce,article3, "Valencia");
 
-            }
+				//Artículo
+				Article articulo= new Article();
+				articulo.setName("nuevoarticulo");
+
+				Set<Category> categoriesList = new HashSet<Category>();
+				categoriesList.add(categoria);
+				categoriesList.add(categoria2);
+
+				articulo.setCategories(categoriesList);
+
+
+
+				//articleDAO.save(articulo, user, exchangeDAO.);
+
+
+			}
 
 		};
 	}

@@ -19,7 +19,7 @@ public class Category {
     private LocalDateTime dateCreation;
     private LocalDateTime dateEdit;
 
-   private Set<Article> articles;
+    private Set<Article> articles;
 
     public Category(){
 
