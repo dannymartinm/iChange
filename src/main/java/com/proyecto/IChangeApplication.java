@@ -104,6 +104,7 @@ public class IChangeApplication {
 				Article article3 =articleDAO.findOne(3);
 				exchangeDAO.executeExchange(jordi,article2,merce,article3, "Valencia");
 
+
 				//Artículo
 				Article articulo= new Article();
 				articulo.setName("nuevoarticulo");
@@ -114,9 +115,9 @@ public class IChangeApplication {
 
 				articulo.setCategories(categoriesList);
 
+				Exchange exex= exchangeDAO.findOne(1);
 
-
-				//articleDAO.save(articulo, user, exchangeDAO.);
+				//articleDAO.save(articulo, user, exex);
 
 
 			}

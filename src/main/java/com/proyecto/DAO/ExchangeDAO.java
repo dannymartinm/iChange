@@ -4,8 +4,11 @@ import com.proyecto.domain.Exchange;
 import com.proyecto.domain.User;
 import com.proyecto.domain.Article;
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -75,12 +78,29 @@ public class ExchangeDAO {
         return jdbcOperations.queryForObject(sql,new Object[]{idUser}, Integer.class );
     }
 
+    public Exchange findOne(int id) {
+        return jdbcOperations.queryForObject("Select * from exchange where idExchange = ?", new Object[]{id}, new exchangeMapper());
+    }
+
     public int save(Exchange exchange) {
         jdbcOperations.update("update article set idExchange = ?", exchange.getIdExchange());
        return jdbcOperations.update("insert into exchange( zoneEx, isDone, dateEx) values( ?, ?, ?)",  exchange.getZoneEx(), 1,exchange.getDateEx());
     }
     private int getNewID(){
         return jdbcOperations.queryForObject("SELECT idEx_SEQ.NEXTVAL FROM DUAL",Integer.class);
+    }
+
+    private final class exchangeMapper implements RowMapper<Exchange> {
+        @Override
+        public Exchange mapRow(ResultSet rs, int row) throws SQLException {
+            Exchange exchange = new Exchange();
+            exchange.setIdExchange(rs.getInt("idExchange"));
+            exchange.setZoneEx(rs.getString("zoneEx"));
+            exchange.setDone(rs.getBoolean("isDone"));
+            exchange.setDateEx(rs.getTimestamp("dateEx"));
+
+            return exchange;
+        }
     }
 
 }
