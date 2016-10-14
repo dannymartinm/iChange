@@ -110,15 +110,15 @@ public class IChangeApplication {
 				articulo.setName("nuevoarticulo");
 
 				Set<Category> categoriesList = new HashSet<Category>();
-				categoriesList.add(categoria);
+				categoriesList.add(categoria2);
 				categoriesList.add(categoria2);
 
 				articulo.setCategories(categoriesList);
 
 				Exchange exex= exchangeDAO.findOne(1);
 
-				//articleDAO.save(articulo, user, exex);
-
+			//	articleDAO.save(articulo, jordi, exex);
+			 //Probando probando 
 
 			}
 
