@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 import com.proyecto.domain.Article;
 import com.proyecto.domain.User;
 import org.springframework.jdbc.core.RowMapper;
@@ -84,7 +85,6 @@ public class ArticleDAO {
             }
         });
     }
-
 
     private static final class articleMapper implements RowMapper<Article>{
 

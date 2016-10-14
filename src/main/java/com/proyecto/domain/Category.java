@@ -1,10 +1,15 @@
 package com.proyecto.domain;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+import javax.persistence.*;
+
 
 /**
  * Created by DanielaMartin on 10/10/16.
  */
+
+@Entity
 public class Category {
 
     private int idCategory;
@@ -13,6 +18,8 @@ public class Category {
 
     private LocalDateTime dateCreation;
     private LocalDateTime dateEdit;
+
+   private Set<Article> articles;
 
     public Category(){
 
@@ -65,6 +72,15 @@ public class Category {
 
     public void setDateEdit(LocalDateTime dateEdit) {
         this.dateEdit = dateEdit;
+    }
+
+    @ManyToMany(mappedBy = "articles")
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
 
     @Override

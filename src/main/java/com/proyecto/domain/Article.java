@@ -1,10 +1,14 @@
 package com.proyecto.domain;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+import javax.persistence.*;
 
 /**
  * Created by DanielaMartin on 04/10/16.
  */
+
+@Entity
 public class Article {
     private int idArticle;
     private String name;
@@ -16,6 +20,8 @@ public class Article {
 
     private LocalDateTime dateCreation;
     private LocalDateTime dateEdit;
+
+    private Set<Category> categories;
 
     public Article(){
 
@@ -103,6 +109,17 @@ public class Article {
 
     public void setDateCreation(LocalDateTime dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "article_category", joinColumns = @JoinColumn(name = "idArt", referencedColumnName = "idArticle"), inverseJoinColumns = @JoinColumn(name = "idCat", referencedColumnName = "idCategory"))
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override
