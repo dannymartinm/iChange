@@ -9,7 +9,7 @@ CREATE TABLE user
   nickname VARCHAR (50) UNIQUE,
   rate double DEFAULT '-1',
   date_creation TIMESTAMP,
-  date_edit TIMESTAMP
+  date_edit TIMESTAMP,
 );
 
 DROP TABLE if EXISTS exchange;
@@ -40,9 +40,11 @@ CREATE TABLE article (
 DROP TABLE if EXISTS user_exchange;
 CREATE TABLE user_exchange(
   idUserEx bigint,
+  idUserEx2 bigint,
   idExchange bigint,
   FOREIGN KEY (idExchange) REFERENCES exchange(idExchange),
-  FOREIGN KEY (idUserEx) REFERENCES  user(idUser)
+  FOREIGN KEY (idUserEx) REFERENCES  user(idUser),
+   FOREIGN KEY (idUserEx2) REFERENCES  user(idUser)
 );
 
 DROP TABLE if EXISTS category;
@@ -60,3 +62,8 @@ CREATE TABLE article_category(
    FOREIGN KEY (idArt) REFERENCES article(idArticle),
    FOREIGN KEY (idCat) REFERENCES  category(idCategory)
 );
+
+CREATE SEQUENCE idEx_SEQ
+   START WITH 1
+   MAXVALUE 99999999999999
+   MINVALUE 0;

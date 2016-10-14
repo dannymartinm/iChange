@@ -79,14 +79,6 @@ public class IChangeApplication {
                 Iterable<Category> categories = categoryDAO.findAll();
                 categories.forEach(u -> System.out.println("id:"+u.getIdCategory() + " Nombre: "+u.getNameCategory()+" Description: "+u.getDescription()));
 
-				//Hacer un exchange
-				User jordi= userDAO.findOne("jordinho");
-				User josep= userDAO.findOne("josi");
-				Article article1= articleDAO.findOne(1);
-				Article article2= articleDAO.findOne(2);
-
-				exchangeDAO.executeExchange(josep,article1,jordi,article2, "Barcelona");
-
 				//Borrar categoría
 				Category categoria = categoryDAO.findOne(1);
 				categoryDAO.deleteOneCategory(categoria);
@@ -96,10 +88,19 @@ public class IChangeApplication {
 				categoria2.setNameCategory("Editando Categoría");
 				categoryDAO.updateCategory(categoria2);
 
-				//añadir puntuación
-				//exchangeDAO.evaluateExchange(1,user2);
-				//exchangeDAO.evaluateExchange(4,user2);
-				//exchangeDAO.evaluateExchange(3,jordi);
+
+				//Hacer un exchange
+				User jordi= userDAO.findOne("jordinho");
+				User josep= userDAO.findOne("josi");
+				Article article1= articleDAO.findOne(1);
+				Article article2= articleDAO.findOne(2);
+
+				exchangeDAO.executeExchange(josep,article1,jordi,article2, "Barcelona");
+
+				//Hacer otro exchange
+				User merce= userDAO.findOne("merc");
+				Article article3 =articleDAO.findOne(3);
+				exchangeDAO.executeExchange(jordi,article2,merce,article3, "Valencia");
 
             }
 

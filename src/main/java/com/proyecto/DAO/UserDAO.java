@@ -54,6 +54,11 @@ public class UserDAO{
         int userUpdate = jdbcOperations.update("update user set username=?, password=?, zone=?, mail=?,  date_edit = ? WHERE idUser=?", user.getUserName(), user.getPassword(), user.getZone(), user.getMail(), timestamp, user.getIdUser());
         return userUpdate;
     }
+    /*
+    public int getContR(User user){
+        String sql = "SELECT contR FROM user WHERE idUser = ?";
+        return jdbcOperations.queryForObject(sql, new Object[]{user.getIdUser()}, Integer.class);
+    }*/
 
     private final class userMapper implements RowMapper<User>{
 
